@@ -8,8 +8,9 @@ let servicePrice1 = +prompt("Сколько это будет стоить?",);
 let service2 = prompt('Какой дополнительный тип услуги нужен?', 'форма обратной связи');
 let servicePrice2 = +prompt("Сколько это будет стоить?");
 let rollback = 13;
-let fullPrice = screenPrice + servicePrice1 + servicePrice2
-let servicePercentPrice =  fullPrice - (fullPrice * (rollback/100));
+let fullPrice = screenPrice + servicePrice1 + servicePrice2;
+let servicePercentPrice;
+
 
 const getRollbackMessage = function (price) {
     if (price >= 30000) {
@@ -28,29 +29,32 @@ const getAllServicePrices = function (){
 const allServicePrices = getAllServicePrices();
 
 function getTitle() {
+    title = title.trim()
     let titleSmall = title.toLowerCase()
     let firstletter = title.charAt(0);
     title = firstletter.toUpperCase() + titleSmall.slice(1);
     return (title);
 }
-
 getTitle();
-console.log("this " + title);
+
+function getServicePercentPrices() {
+    servicePercentPrice =  fullPrice - (fullPrice * (rollback/100));
+    return (servicePercentPrice);
+}
+getServicePercentPrices() 
 
 function getFullPrice() {
     return (screenPrice + allServicePrices);
 }
 fullPrice = getFullPrice();
 
-// console.log("summ " + allServicePrices);
-// console.log("this " + fullPrice);
-
 
 console.log(getRollbackMessage(fullPrice));
 console.log(typeof title);
-// console.log(typeof screenPrice);
-// console.log(typeof adaptive);
-// console.log(screens.length);
+console.log(servicePercentPrice);
+console.log(typeof screenPrice);
+console.log(typeof adaptive);
+console.log(screens.length);
 
-// console.log("Общая стоимость: " + fullPrice);
-// console.log("итоговая стоимость за вычетом отката посреднику: " + Math.ceil(servicePercentPrice));
+console.log("Общая стоимость: " + fullPrice);
+console.log("итоговая стоимость за вычетом отката посреднику: " + Math.ceil(servicePercentPrice));
